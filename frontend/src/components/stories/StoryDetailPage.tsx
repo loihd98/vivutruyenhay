@@ -210,10 +210,10 @@ const StoryDetailPage: React.FC = () => {
             {error || "Truyện không tồn tại"}
           </h1>
           <button
-            onClick={() => router.push("/truyen_text")}
+            onClick={() => router.push("/")}
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Về trang danh sách truyện
+            Về trang chủ
           </button>
         </div>
       </div>

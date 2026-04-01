@@ -358,7 +358,12 @@ class AdminController {
 
       const updatedUser = await prisma.user.update({
         where: { id },
-        data: { role },
+        data: { 
+          role,
+          tokenVersion: {
+            increment: 1
+          }
+        },
         select: {
           id: true,
           email: true,
@@ -366,6 +371,7 @@ class AdminController {
           role: true,
           avatar: true,
           createdAt: true,
+          tokenVersion: true,
         },
       });
 
@@ -426,6 +432,10 @@ class AdminController {
 
       if (role !== undefined && ["USER", "ADMIN", "EDITOR"].includes(role)) {
         updateData.role = role;
+        // Increment token version when role changes to force re-authentication
+        updateData.tokenVersion = {
+          increment: 1
+        };
       }
 
       const updatedUser = await prisma.user.update({
@@ -438,6 +448,7 @@ class AdminController {
           role: true,
           avatar: true,
           createdAt: true,
+          tokenVersion: true,
           _count: {
             select: {
               stories: true,

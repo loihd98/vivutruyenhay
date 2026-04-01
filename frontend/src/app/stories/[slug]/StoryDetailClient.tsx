@@ -189,7 +189,7 @@ export default function StoryDetailClient({ params, initialStory }: StoryPagePro
         sort: "viewCount",
         limit: 8,
       });
-      setTrendingStories((response.data?.data || []) as Story[]);
+      setTrendingStories((response.data || []) as Story[]);
     } catch (error) {
       console.error("Error fetching trending stories:", error);
     } finally {
@@ -309,10 +309,10 @@ export default function StoryDetailClient({ params, initialStory }: StoryPagePro
               {error || "Truyện không tồn tại"}
             </h1>
             <button
-              onClick={() => router.push("/stories")}
+              onClick={() => router.push("/")}
               className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Về trang danh sách truyện
+              Về trang chủ
             </button>
           </div>
         </div>
